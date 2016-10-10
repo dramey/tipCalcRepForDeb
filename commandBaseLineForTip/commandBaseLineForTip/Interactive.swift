@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Interactive{
+class tipCalculator{
     private var done: Bool = false
     private var currentInput: String = "q"
     private var io = Io()
@@ -17,8 +17,8 @@ class Interactive{
         
         while !done{
             
-            //ask the user for input right her
-            io.writeMessage("\nEnter 'c' to calculate tip")
+            //ask the user for input right here
+            io.writeMessage("\nEnter 'c' to calculate tip OR 'q' to Quit")
             currentInput = io.getInput()
             
             if currentInput == "q"{
@@ -43,7 +43,7 @@ class Interactive{
         
         // Get the bill amount
         let amountOfBill: Double? = Double(currentInput)
-        print(amountOfBill ?? 0.0)
+        //print(amountOfBill ?? 0.0)
         
         //Get Tip amount
         
@@ -52,16 +52,24 @@ class Interactive{
         
         let percentOfTip: Double? = Double(currentInput)
         let totalOfTip = ((percentOfTip ?? 0.0) / 100)
-        print(totalOfTip)
+        //print(totalOfTip)
         
         // Do math for tip amount, print result
         let amountOfTip = ((amountOfBill ?? 0.0) * totalOfTip)
-        print("The amount of your tip is: ",(amountOfTip))
+        print("\nThe amount of your tip is: \(String(format:"%.02f", roundTwoDigits(num: amountOfTip)))")
         
         //Do math to add the tip amount to the Bill Amount for total Bill
         let totalCompleteBill = ((amountOfBill ?? 0.0) + amountOfTip)
-        print("The amount of your bill with your tip is: ",(totalCompleteBill))
+        sleep(1)
+        
+        print("\nThe amount of your bill is: \(String(format: "%.02f", roundTwoDigits(num: totalCompleteBill)))")
         
     }
+    
+    func roundTwoDigits(num: Double) -> Double {
+        let tmp = (num*100).rounded(.toNearestOrAwayFromZero)
+        return tmp/100
+    }
+    
    
 }

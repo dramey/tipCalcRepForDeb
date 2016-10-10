@@ -8,7 +8,7 @@
 
 import Foundation
 
-let interactive = Interactive()
+let interactive = tipCalculator()
 
 //Run in interactive mode
 interactive.go()
